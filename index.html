@@ -15,7 +15,7 @@
 <body>
     <div class="container-fluid">
     <h6 id="header"> Movie Trailers </h6>
-            <div id="column1">
+            <div id="searchArea">
                 
                 <div class="dropdown">
                     <button class="dropbtn btn btn-outline-primary dropdown-toggle">In Theaters</button>
@@ -27,8 +27,8 @@
                 </div>
 
                 <form>
-                    <input id='movie-title' placeholder=' Search for movie by title ' />
-                    <button class="btn btn-outline-primary" id='search-title'>
+                    <input id='searchTitle' placeholder=' Search for movie by title ' />
+                    <button class="btn btn-outline-primary" id='searchBtn'>
                         <span><i class="fa fa-search"></i></span>
                     </button>
                 </form>
@@ -37,12 +37,9 @@
             <div id="movieArea">
                 <div id="display-poster"></div>
                 <div id='trailer'>
-                    <iframe width="580" height="455" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    <iframe  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
-                    <div id='brief'></div>
-                    <div id='inside-trailer'></div>
-                    <!-- <img id='movie-poster' alt=""> -->
- 
+                    <span id='brief'></span> 
                 </div>
             </div>
     </div>

@@ -8,17 +8,16 @@ body {
     font-size: 12vh;
     font-weight: 200;
     text-align: center;
-    color: #555;
+    color: #7a7a7a;
 }
 
-#column1 {
+#searchArea {
     margin: auto;
     max-width: 500px;
 }
 
 
-input,
-img,
+#searchTitle,
 button,
 iframe {
     margin-bottom: 2%;
@@ -30,41 +29,35 @@ p {
 form {
     text-align: center;
 }
-input {
+#searchTitle {
     width: 100%;
     height: 6vh;
     min-height: 26px;
     font-size: 1.8vw;
 }
-#search-title {
+button {
     height: 6vh;
     min-height: 26px;
 }
 #trailer {
+    display: inline-flex;
     margin: 0 auto;
 }
 iframe {
     width: 58vw;
-    height: 45.5vw;
+    height: 32.63vw;
 }
-img {
-    width: 250px;
-    height: 280px;
-}
-
-img:hover{
-    box-shadow: 5px 3px 5px #ccc;
-    transition: box-shadow 1s;
-
+#brief {
+    color: #ffffff;
+    width: 38vw;
+    font-size: 18px;
 }
 
 #movie-poster {
     width: 7.51em;
     height: 10em;
 }
-#inside-trailer {
-    float: left;
-}
+
 .row {
     margin-bottom: 2%;
 }
@@ -274,24 +267,32 @@ body{
     -webkit-box-orient: vertical;
 }
 
-#brief {
-    color: #ffffff;
-    width: 74%;
-    font-size: 18px;
-}
+
 
 h5 {
     font-size: 30px;
 }
 
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 760px) {
  
-    h6{
-        font-size: 8vh;
+    #header {
+        font-size: 6vh;
     }
-
-    input {
-        font-size: 4vw;
+    .dropdown,
+    #searchTitle,
+    #searchtn {
+        font-size: 3vh;
+    }
+    #trailer {
+        display: inline;
+    }
+    iframe {
+        width: 94vw;
+        height: 52.88vw;
+    }
+    #brief {
+        width: 94vw;
+        font-size: 3vh;
     }
     .container-movie {
         transform: translateX(-5%);
