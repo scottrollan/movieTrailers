@@ -6,8 +6,9 @@ const getIMDB = function () {
 
 const searchTitles = function (e) {
     e.preventDefault();
-    const title = $('#movie-title').val().trim();
+    const title = $('#searchTitle').val().trim();
     getTitlePoster(title);
+    $('#searchTitle').empty();
 }
 
 const showTrailer = function () {
@@ -26,5 +27,5 @@ const dropdownVal = function () {
 }
 
 $('.dropdown-item').on('click', dropdownVal);
-$('#search-title').on('click', searchTitles);
+$('#searchBtn').on('click', searchTitles);
 $('#display-poster').on('click', '.container-movie', getIMDB);
