@@ -3,18 +3,19 @@ body {
     overflow: scroll;
 }
 
-h6 {
+#header {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 12vh;
     font-weight: 200;
     text-align: center;
     color: #555;
-    padding: 10px 0 10px;
 }
 
-col,
-.col-8 {
+#column1 {
     margin: auto;
+    max-width: 500px;
 }
+
 
 input,
 img,
@@ -39,11 +40,12 @@ input {
     height: 6vh;
     min-height: 26px;
 }
-.container-movie {
-    transform: translateY(-25%);
+#trailer {
+    margin: 0 auto;
 }
 iframe {
-    width: 45%;
+    width: 58vw;
+    height: 45.5vw;
 }
 img {
     width: 250px;
@@ -283,24 +285,16 @@ h5 {
 }
 
 @media screen and (max-width: 580px) {
+ 
     h6{
         font-size: 8vh;
     }
-    .col,
-    .col-8 {
-        padding-top: 2vh;
-        margin: auto;
-    }
+
     input {
         font-size: 4vw;
     }
     .container-movie {
-        transform: translateY(0);
-    }
-    iframe {
-        margin-top: 12%;
-        width: 90%;
-        height: auto;
+        transform: translateX(-5%);
     }
     p {
         font-size: smaller;

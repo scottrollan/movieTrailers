@@ -13,10 +13,9 @@
 </head>
 
 <body>
-    <h6> Movie Trailers </h6>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col" id="column1">
+    <h6 id="header"> Movie Trailers </h6>
+            <div id="column1">
                 
                 <div class="dropdown">
                     <button class="dropbtn btn btn-outline-primary dropdown-toggle">In Theaters</button>
@@ -35,17 +34,17 @@
                 </form>
             </div>
 
-            <div class="col-8" id="column2">
+            <div id="movieArea">
                 <div id="display-poster"></div>
                 <div id='trailer'>
+                    <iframe width="580" height="455" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+                    <div id='brief'></div>
                     <div id='inside-trailer'></div>
                     <!-- <img id='movie-poster' alt=""> -->
-                    <iframe width="580" height="455" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
-                    <div id='brief'></div>
+ 
                 </div>
             </div>
-        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
