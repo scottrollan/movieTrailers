@@ -1,14 +1,15 @@
 const getTitlePoster = function (title) {
-    const omdbBaseURL = "https://www.omdbapi.com/";
     $.ajax({
-        url: `${omdbBaseURL}?s=${title}&apikey=e0c3e966`,
+        url: `https://www.omdbapi.com/?s=${title}&type=movie&p=100&apikey=e0c3e966`,
         method: 'GET'
     }).then(function (response) {
-        const titleA = Object.values(response);
-        const posters = titleA[0];
-        render(posters, false);
 
-        //===================================Begin Barry's Code
+        const posterList = response.Search;
+        const posters = []
+        for(i = 0; i < posterList.length; i++) {
+            posters.push(posterList[i]);
+        }
+        render(posters, false);
         // //iterating through posters[] adding object values from tmdb api
         for (let i = 0; i < posters.length; i++) {
             const wholeTitle = posters[i].Title;
@@ -21,25 +22,21 @@ const getTitlePoster = function (title) {
                 let objectAddB = {  //creates objectAddB to store backdropPath key/value
                     backdropPath: responseB.backdrop_path,
                 };
-
                 $.extend(posters[i], objectAddB);  //extend objectAddB to the corresponding object in posters[]
                 //return posters;
             });
             $.ajax({
-                url: `${omdbBaseURL}?t=${wholeTitle}&plot=long&apikey=eb08547`,
+                url: `https://www.omdbapi.com/?t=${wholeTitle}&plot=long&apikey=eb08547`,
                 method: 'GET'
             }).then(function (responseT) {  //back to omdb to retrieve more key/value pairs to add to posters[]
                 const genres = responseT.Genre; //separate the string Genre into distinct variables
                 const genreSplit = genres.split(",");
-                const genre1 = genreSplit[0];
-                const genre2 = genreSplit[1];
                 let objectAdd = {       //create objectAdd additional key/value fields destined for posters[]
                     rated: responseT.Rated,
                     runtime: responseT.Runtime,
-                    genreOne: genre1,
-                    genreTwo: genre2,
+                    genres: genreSplit, // array of strings e.g. ["Drama", "Comedy"...]
                     overview: responseT.Plot,
-                    // tomatoRating: responseT.Ratings[1].Value,  //ICEBOX
+                    ratings: responseT.Ratings,  //array of objects e.g. [{Source: "IMDB", Value: "66%"}, ...]
                     website: responseT.Website
                 };
                 $.extend(posters[i], objectAdd);  //extend objectAdd to the corresponding object in posters[]
@@ -47,7 +44,6 @@ const getTitlePoster = function (title) {
 
             });
         }
-        //=================================End Barry's New Code
     });
 }
 
@@ -98,12 +94,6 @@ const getTMDBID = function (imdbID, source) {
         movieSnap.append(backImage);
         const backHeading = $(`<h1>${title}<br><span>${year}  -  ${runtime} min</span></h1>`);
         movieSnap.append(backHeading);
-        //ul movieTags              COULDNT MAKE GENRES WORK!!!!
-        // const movieTags = $('<ul>');
-        // movieTags.addClass('movie-tags');
-        //     // const listItems = $(`<li><a ref="#">${genreA}</a></li><li><a href="#">${genreB}</a></li><li><a href="#">${genreC}</a></li>`);
-        //     movieTags.append(listItems);
-        // movieSnap.append(movieTags);
         const movieSynopsis = $(`<p>${brief}</p>`);
         movieSynopsis.addClass('movie-synopsis');
         movieSnap.append(movieSynopsis);
@@ -111,10 +101,6 @@ const getTMDBID = function (imdbID, source) {
         movieInsideBack.append(movieDetails);
         movie.append(movieInsideBack);
         imgDiv.append(movie);
-        //==========================================End Barry's New Code//
-        //const imgDiv =$('<img>');
-        //imgDiv.attr('id', 'movie-poster'); THESE THREE LINES ARE THE OLD CODE
-        //imgDiv.attr('src', source);
 
         const titleHolder = `<h5>${title}</h5>`;
         const briefHolder = `<p>${brief}</p>`;

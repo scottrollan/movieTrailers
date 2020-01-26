@@ -32,11 +32,17 @@ const render = function (posters, dropdown) {
         movieSnap.append(backImage);
         const backHeading = $(`<h1>${posters[i].Title}<br><span>${posters[i].Year}  -  ${posters[i].runtime}  -  rated: ${posters[i].rated}</span></h1>`);
         movieSnap.append(backHeading);
-        //ul movieTags
+
         const movieTags = $('<ul>');
         movieTags.addClass('movie-tags');
-        const listItems = $(`<li><a ref="#">${posters[i].genreOne}</a></li><li><a href="#">${posters[i].genreTwo}</a></li>`);
-        movieTags.append(listItems);
+
+        if(posters[i].genres) {
+            posters[i].genres.map(g => {
+            const listItem = $(`<li style="color:white;">${g}</li>`);
+            movieTags.append(listItem);
+            })
+        }
+
         movieSnap.append(movieTags);
         const movieSynopsis = $(`<p>${posters[i].overview}</p>`);
         movieSynopsis.addClass('movie-synopsis');
