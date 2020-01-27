@@ -9,35 +9,40 @@ const render = function (posters, dropdown) {
         movie.addClass('movie');
         const movieInsideFront = $('<div>');
         movieInsideFront.addClass('movie-inside front');
-        const image = $('<img>');      //This is where the image lives now
+        const image = $('<img>');     
         image.addClass('poster');
         image.attr('src', posters[i].Poster);
         movieInsideFront.append(image);
         movie.append(movieInsideFront);
 
         //back of the 3d movie element           
-        const movieInsideBack = $('<div>');
+        const movieInsideBack = $('<div style="background:#eeeeee;">');
         movieInsideBack.addClass('movie-inside back');
+        const backImage = $('<img style="max-height:36%;">');
+        const backImageSrc = `https://image.tmdb.org/t/p/w500/${posters[i].backdropPath}`;
+        backImage.attr('src', backImageSrc);
+        backImage.attr('onerror', "this.onerror=null;this.src='./assets/movieReel.png';");
+        movieInsideBack.append(backImage);
         const movieDetails = $('<div>');
         movieDetails.addClass('movie-details');
         const movieSnap = $('<div>');
         movieSnap.addClass('movie-snap');
-        const backImage = $('<img>');
-        const backImageSrc = `https://image.tmdb.org/t/p/w500/${posters[i].backdropPath}`;
-        backImage.attr('src', backImageSrc);
-        backImage.attr('onerror', "this.onerror=null;this.src='./assets/movieReel.png';");
-        movieSnap.append(backImage);
         const backHeading = $(`<h1>${posters[i].Title}<br><span>${posters[i].Year}  -  ${posters[i].runtime}  -  rated: ${posters[i].rated}</span></h1>`);
         movieSnap.append(backHeading);
-
-        const movieTags = $('<ul>');
+        const movieTags = $('<div>');
         movieTags.addClass('movie-tags');
 
         if(posters[i].genres) {
             posters[i].genres.map(g => {
-            const listItem = $(`<li style="color:white;">${g}</li>`);
+            const listItem = $(`<span style="color:white;">${g}</span>`);
+            listItem.addClass('tags')
             movieTags.append(listItem);
             })
+        }
+        if(posters[i].actors) {
+            const actors = $(`<p>${posters[i].actors}</p>`);
+            actors.addClass('actors');
+            movieSnap.append(actors);
         }
 
         movieSnap.append(movieTags);

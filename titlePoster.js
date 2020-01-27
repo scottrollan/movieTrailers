@@ -1,9 +1,8 @@
 const getTitlePoster = function (title) {
     $.ajax({
-        url: `https://www.omdbapi.com/?s=${title}&type=movie&p=100&apikey=e0c3e966`,
+        url: `https://www.omdbapi.com/?s=${title}&type=movie&apikey=e0c3e966`,
         method: 'GET'
     }).then(function (response) {
-
         const posterList = response.Search;
         const posters = []
         for(i = 0; i < posterList.length; i++) {
@@ -13,6 +12,7 @@ const getTitlePoster = function (title) {
         // //iterating through posters[] adding object values from tmdb api
         for (let i = 0; i < posters.length; i++) {
             const wholeTitle = posters[i].Title;
+
             const apikey = '2404f28934c0e486a4e4a4accf9101c5';
             const queryURL3 = `https://api.themoviedb.org/3/movie/${posters[i].imdbID}?api_key=${apikey}&append_to_response=videos`;
             $.ajax({  //get the backdrop path for img on back of 3d object 
@@ -37,7 +37,8 @@ const getTitlePoster = function (title) {
                     genres: genreSplit, // array of strings e.g. ["Drama", "Comedy"...]
                     overview: responseT.Plot,
                     ratings: responseT.Ratings,  //array of objects e.g. [{Source: "IMDB", Value: "66%"}, ...]
-                    website: responseT.Website
+                    website: responseT.Website,
+                    actors: responseT.Actors
                 };
                 $.extend(posters[i], objectAdd);  //extend objectAdd to the corresponding object in posters[]
                 render(posters);
