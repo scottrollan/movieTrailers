@@ -24,8 +24,9 @@ const render = function (posters, dropdown) {
         movieSnap.addClass('movie-snap');
         const backImage = $('<img>');
         const backImageSrc = `https://image.tmdb.org/t/p/w500/${posters[i].backdropPath}`;
-        if (backImageSrc == '$0') {
-            backImageSrc.attr('src', 'https://cdn.vox-cdn.com/thumbor/QdG0KHLW7hbXpkdU_FuBsl7dsOU=/0x0:2040x1360/1200x675/filters:focal(866x568:1192x894)/cdn.vox-cdn.com/uploads/chorus_image/image/62381212/jbareham_181121_0820_netflix_review_02.0.jpg');
+        // const backImageSrc = './assets/movieReel.png';
+        if (backImageSrc == 'https://image.tmdb.org/t/p/w500/undefined' || backImageSrc == 'https://image.tmdb.org/t/p/w500/null') {
+            backImage.attr('src', './assets/movieReel.png');
         } else {
             backImage.attr('src', backImageSrc);
         }
