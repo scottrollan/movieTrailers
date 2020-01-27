@@ -24,12 +24,8 @@ const render = function (posters, dropdown) {
         movieSnap.addClass('movie-snap');
         const backImage = $('<img>');
         const backImageSrc = `https://image.tmdb.org/t/p/w500/${posters[i].backdropPath}`;
-        // const backImageSrc = './assets/movieReel.png';
-        if (backImageSrc == 'https://image.tmdb.org/t/p/w500/undefined' || backImageSrc == 'https://image.tmdb.org/t/p/w500/null') {
-            backImage.attr('src', './assets/movieReel.png');
-        } else {
-            backImage.attr('src', backImageSrc);
-        }
+        backImage.attr('src', backImageSrc);
+        backImage.attr('onerror', "this.onerror=null;this.src='./assets/movieReel.png';");
         movieSnap.append(backImage);
         const backHeading = $(`<h1>${posters[i].Title}<br><span>${posters[i].Year}  -  ${posters[i].runtime}  -  rated: ${posters[i].rated}</span></h1>`);
         movieSnap.append(backHeading);
