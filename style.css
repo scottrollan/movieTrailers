@@ -238,29 +238,27 @@ iframe {
     background-color: gray;
 }
 
-@media (-moz-touch-enabled: 0), (pointer: fine) {
 
-    .dropdown-content a:hover {background-color: #007bff;}
+.dropdown-content a:hover {background-color: #007bff;}
 
-    .dropdown:hover .dropdown-content {display: block;}  
-    
-    .dropdown:hover .dropbtn {background-color: #007bff; color: #ffffff;}
+.dropdown:hover .dropdown-content {display: block;}  
 
-    .container-movie:hover .front{
-        opacity: 1;
-        transition: opacity 0.5s ease-in-out;
-        -moz-transition: opacity 0.5s ease-in-out;
-        -webkit-transition: opacity 0.5s ease-in-out;
-    }
-    .container-movie:hover .movie{
-        transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
-        -webkit-transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
-        -moz-transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
-    }
-    .container-movie:hover .front{
-        opacity: 0.5;
-    }
+.dropdown:hover .dropbtn {background-color: #007bff; color: #ffffff;}
+
+/* .container-movie:hover .front{ */
+    .frontTurn {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -webkit-transition: opacity 0.5s ease-in-out;
 }
+/* .container-movie:hover .movie{ */
+    .movieTurn {
+    transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
+    -webkit-transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
+    -moz-transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
+}
+
 
 @media screen and (max-width: 760px) {
  

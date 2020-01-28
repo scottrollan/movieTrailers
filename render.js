@@ -7,8 +7,10 @@ const render = function (posters, dropdown) {
         imgDiv.addClass('container-movie');
         const movie = $('<div>');
         movie.addClass('movie');
+        // movie.attr('onClick', addClass('movieTurn'))
         const movieInsideFront = $(`<div>`);
         movieInsideFront.addClass('movie-inside front');
+        // movieInsideFront.attr('onClick', addClass('frontTurn'))
         const image = $('<img>');     
         image.addClass('poster');
         image.attr('alt', posters[i].Title);
@@ -82,7 +84,10 @@ const render = function (posters, dropdown) {
 
         $('#display-poster').append(imgDiv);
     }
-
+    $('.container-movie').click( function() {
+        $(".movie", this).toggleClass("movieTurn");
+        $(".front", this).toggleClass("frontTurn");            
+    } );
     $('#movie-title').val('');
     showPoster();
 }

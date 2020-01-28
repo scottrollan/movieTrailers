@@ -25,7 +25,12 @@ const dropdownVal = function () {
     const inputVal = $(this).attr('action');
     getPopular(inputVal);
 }
+const dropMenu = function () {
+    $('.dropdownMenu').style.display='block';
+    getPopular(inputVal);
+}
 
+$('.dropdown-toggle').on('click', dropMenu);
 $('.dropdown-item').on('click', dropdownVal);
 $('#searchBtn').on('click', searchTitles);
 $('#display-poster').on('dblclick', '.container-movie', getIMDB);
