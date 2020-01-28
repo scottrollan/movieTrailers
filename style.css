@@ -238,7 +238,7 @@ iframe {
     background-color: gray;
 }
 
-@media(hover: hover) and (pointer: fine) {
+@media (-moz-touch-enabled: 0), (pointer: fine) {
 
     .dropdown-content a:hover {background-color: #007bff;}
 
