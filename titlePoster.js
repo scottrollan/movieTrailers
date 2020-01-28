@@ -48,7 +48,7 @@ const getTitlePoster = function (title) {
     });
 }
 
-const getTMDBID = function (imdbID, source) {
+const getTMDBID = function (imdbID) {
     const apikey = '2404f28934c0e486a4e4a4accf9101c5';
     const queryURL = `https://api.themoviedb.org/3/movie/${imdbID}?api_key=${apikey}&append_to_response=videos`;
     $.ajax({
@@ -60,18 +60,11 @@ const getTMDBID = function (imdbID, source) {
         const vKey = res.videos.results[0].key;
         const title = res.title;
         const brief = res.overview;
-
-        //new code begins ==vv=here
         const posterSrc = `https://image.tmdb.org/t/p/w500${res.poster_path}`;
         const backdropSrc = `https://image.tmdb.org/t/p/w500${res.backdrop_path}`;
         const year = `${res.release_date.substring(0, 4)}`;
         const runtime = `${res.runtime}`;
-        // const genreA = `${res.genres[0].name}`;
-        // const genreB = `${res.genres[1].name}`;
-        // const genreC = `${res.genres[2].name}`;
-
         const imgDiv = $('<div>');
-
         const movie = $('<div>');
         imgDiv.addClass('selected-movie');
         movie.addClass('movie');
@@ -110,12 +103,14 @@ const getTMDBID = function (imdbID, source) {
 
         const src = `https://www.youtube.com/embed/${vKey}`;
         $('iframe').attr('src', src);
+        
+        const goSee = `<button href='https://www.fandango.com/search/?q=${title}' target="_blank">Find This Movie</button>`
         showTrailer();
     });
 }
 
-const getPopular = function (search) {
-    const popURL = `https://api.themoviedb.org/3/movie/${search}?api_key=2404f28934c0e486a4e4a4accf9101c5&language=en-US&page=1&region=US`;
+const getPopular = function (clickedOption) {
+    const popURL = `https://api.themoviedb.org/3/movie/${clickedOption}?api_key=2404f28934c0e486a4e4a4accf9101c5&language=en-US&page=1&region=US`;
     $.ajax({
         url: popURL,
         method: 'GET'

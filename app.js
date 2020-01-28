@@ -26,11 +26,8 @@ const dropdownVal = function () {
     getPopular(inputVal);
 }
 
-const doSomething = function () {
-    $('.movie-synopsis').addClass('blackout')
-}
-
 $('.dropdown-item').on('click', dropdownVal);
 $('#searchBtn').on('click', searchTitles);
 $('#display-poster').on('dblclick', '.container-movie', getIMDB);
-$('.movie-container').on('click', doSomething);
+$(document).ready($("#trailer").hide());
+$(document).ready($("#searchTitle").val(""));

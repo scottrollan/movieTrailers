@@ -7,10 +7,12 @@ const render = function (posters, dropdown) {
         imgDiv.addClass('container-movie');
         const movie = $('<div>');
         movie.addClass('movie');
-        const movieInsideFront = $('<div>');
+        const movieInsideFront = $(`<div>`);
         movieInsideFront.addClass('movie-inside front');
         const image = $('<img>');     
         image.addClass('poster');
+        image.attr('alt', posters[i].Title);
+        // image.attr('onerror', "this.onerror=null;this.style.display='none'");
         image.attr('src', posters[i].Poster);
         movieInsideFront.append(image);
         movie.append(movieInsideFront);
@@ -53,6 +55,12 @@ const render = function (posters, dropdown) {
         movieInsideBack.append(movieDetails);
         movie.append(movieInsideBack);
         imgDiv.append(movie);
+        // if (inTheaters) {
+            // const theaterLink = `https://www.fandango.com/search/?q=${posters[i].Title}`;
+            // const goSee = $(`<button href='${theaterLink}' target='_blank'>See It In Theaters</button>`);
+            // goSee.addClass('goSeeBtn');
+            // movieInsideBack.append(goSee);
+        // }
 
         if (dropdown == true) {
             image.attr('src', `https://image.tmdb.org/t/p/w500${posters[i].poster_path}`);
@@ -61,7 +69,7 @@ const render = function (posters, dropdown) {
             imgDiv.attr('imdb-id', posters[i].id);
             backImage.attr('src', `https://image.tmdb.org/t/p/w500${posters[i].backdrop_path}`);
             backHeading.html(`<h1>${posters[i].title}<br><span>Release Date: ${posters[i].release_date}</span></h1>`);
-            movieTags.empty();
+            // movieTags.empty();
 
         } else {
             if (posters[i].Poster !== 'N/A' && posters[i].Type === 'movie') {
