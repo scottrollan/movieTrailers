@@ -2,19 +2,16 @@ const render = function (posters, dropdown) {
     $('#display-poster').empty();
 
     for (let i = 0; i < posters.length; i++) {
-
+        //front of the 3d movie element
         const imgDiv = $('<div>');
         imgDiv.addClass('container-movie');
         const movie = $('<div>');
         movie.addClass('movie');
-        // movie.attr('onClick', addClass('movieTurn'))
         const movieInsideFront = $(`<div>`);
         movieInsideFront.addClass('movie-inside front');
-        // movieInsideFront.attr('onClick', addClass('frontTurn'))
         const image = $('<img>');     
         image.addClass('poster');
         image.attr('alt', posters[i].Title);
-        // image.attr('onerror', "this.onerror=null;this.style.display='none'");
         image.attr('src', posters[i].Poster);
         movieInsideFront.append(image);
         movie.append(movieInsideFront);

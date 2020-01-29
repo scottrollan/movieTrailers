@@ -94,6 +94,9 @@ iframe {
     z-index: 1;
     cursor: pointer;
   }
+  .seeDropdown {
+      display: inline-block;
+  }
  
 #display-poster{
 	position: absolute;

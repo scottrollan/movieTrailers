@@ -26,11 +26,11 @@ const dropdownVal = function () {
     getPopular(inputVal);
 }
 const dropMenu = function () {
-    $('.dropdownMenu').style.display='block';
+    $('.dropdown-content').toggleClass('seeDropdown');
     getPopular(inputVal);
 }
 
-$('.dropdown-toggle').on('click', dropMenu);
+$('.dropdown').on('click', '.drodownMenu', dropMenu);
 $('.dropdown-item').on('click', dropdownVal);
 $('#searchBtn').on('click', searchTitles);
 $('#display-poster').on('dblclick', '.container-movie', getIMDB);
