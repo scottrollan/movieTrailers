@@ -30,7 +30,7 @@ const dropMenu = function () {
     getPopular(inputVal);
 }
 
-$('.dropdown').on('click', '.drodownMenu', dropMenu);
+$('.dropdown').on('click', '.dropdownMenu', dropMenu);
 $('.dropdown-item').on('click', dropdownVal);
 $('#searchBtn').on('click', searchTitles);
 $('#display-poster').on('dblclick', '.container-movie', getIMDB);

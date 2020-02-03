@@ -94,9 +94,6 @@ iframe {
     z-index: 1;
     cursor: pointer;
   }
-  .seeDropdown {
-      display: inline-block;
-  }
  
 #display-poster{
 	position: absolute;
@@ -109,7 +106,7 @@ iframe {
 }
 .container-movie{
 	position: relative;
-	margin: 2% 3%;
+	margin: 4% 3%;
     perspective: 1000px;
     overflow:visible;
 }
