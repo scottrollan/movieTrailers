@@ -1,5 +1,6 @@
 const render = function (posters, fromDropdownMenu) {
     $('#display-poster').empty();
+    console.log(posters)
 
     for (let i = 0; i < posters.length; i++) {
         const containerDiv = $('<div>');
@@ -20,24 +21,24 @@ const render = function (posters, fromDropdownMenu) {
         const movieInsideBack = $('<div style="background:#eeeeee;">');
         movieInsideBack.addClass('movie-inside back');
         const backImage = $('<img style="max-height:36%;">');
-        const backImageSrc = posters[i].backdropPath;
-        backImage.attr('src', backImageSrc);
+        // const backImageSrc = posters[i].backdropPath;
+        backImage.attr('src', posters[i].backdropPath);
         backImage.attr('onerror', "this.onerror=null;this.src='./assets/movieReel.png';");
         movieInsideBack.append(backImage);
         const movieDetails = $('<div>');
         movieDetails.addClass('movie-details');
         const movieSnap = $('<div>');
         movieSnap.addClass('movie-snap');
-        const backHeading = $(`<h1>${posters[i].Title}<br><span>${posters[i].Year}  -  ${posters[i].runtime}  -  rated: ${posters[i].rated}</span></h1>`);
+        const backHeading = $(`<h1>${posters[i].Title}<br><span>${posters[i].Year}${posters[i].runtime}${posters[i].rated}</span></h1>`);
         movieSnap.append(backHeading);
         const movieTags = $('<div>');
         movieTags.addClass('movie-tags');
 
-        if(posters[i].genresList) {
-            posters[i].genresList.map(g => {
-            const listItem = $(`<span style="color:white;">${g}</span>`);
-            listItem.addClass('tags')
-            movieTags.append(listItem);
+        if(posters[i].genres) {
+            posters[i].genres.map(g => {
+                const listItem = $(`<span style="color:white;">${g}</span>`);
+                listItem.addClass('tags')
+                movieTags.append(listItem);
             })
         }
         if(posters[i].actors) {
@@ -51,19 +52,13 @@ const render = function (posters, fromDropdownMenu) {
         movieSynopsis.addClass('movie-synopsis');
         movieSnap.append(movieSynopsis);
         movieDetails.append(movieSnap);
+        if (posters[i].goSee) {
+            const goSeeBtn = `<button style='padding:8px 15px;z-index:9999;' href=${posters[i].goSee} target='_blank'>Find in Theaters</button>`
+            movieInsideBack.append(goSeeBtn)
+        }
         movieInsideBack.append(movieDetails);
         movie.append(movieInsideBack);
         containerDiv.append(movie);
-
-        if (fromDropdownMenu == true) {
-            // posters[i].goSee = `https://www.fandango.com/search/?q=${posters[i].Title}`;
-            image.attr('src', `https://image.tmdb.org/t/p/w500${posters[i].poster_path}`);
-            movieInsideFront.append(image);
-
-            containerDiv.attr('imdb-id', posters[i].id);
-            backImage.attr('src', `https://image.tmdb.org/t/p/w500${posters[i].backdrop_path}`);
-            // backHeading.html(`<h1>${posters[i].title}<br><span>Release Date: ${posters[i].release_date}  -  ${posters[i].runtime}  -  rated: ${posters[i].rated}</span></h1>`);
-        }
 
         $('#display-poster').append(containerDiv);
     }
