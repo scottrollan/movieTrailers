@@ -95,13 +95,6 @@ iframe {
     z-index: 1;
     cursor: pointer;
   }
-
-  #fandango {
-      width: 100%;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-  }
  
 #display-poster{
 	position: absolute;
@@ -154,7 +147,7 @@ iframe {
     flex-direction: column;
     align-items: center;
 }
-.movie-inside img {
+.poster {
     width: 100%;
     height: 100%;
     top: 0;
@@ -241,6 +234,12 @@ iframe {
     display: -webkit-box;
     -webkit-box-orient: vertical;
 }
+.fandango {
+    width: 88px;
+    height: 31px;
+    border: 0px;
+    align-self: flex-end;
+  }
 .goSeeBtn {
     padding: 5px 10px;
     text-align: center;

@@ -21,7 +21,7 @@ const render = function (posters, fromDropdownMenu) {
         const movieInsideBack = $('<div style="background:#eeeeee;">');
         movieInsideBack.addClass('movie-inside back');
         const backImage = $('<img style="max-height:36%;">');
-        // const backImageSrc = posters[i].backdropPath;
+        backImage.addClass('poster')
         backImage.attr('src', posters[i].backdropPath);
         backImage.attr('onerror', "this.onerror=null;this.src='./assets/movieReel.png';");
         movieInsideBack.append(backImage);
@@ -53,8 +53,15 @@ const render = function (posters, fromDropdownMenu) {
         movieSnap.append(movieSynopsis);
         movieDetails.append(movieSnap);
         if (posters[i].goSee != null) {
-            const goSeeBtn = `<a href='${posters[i].goSee}' target='_blank'><img src='./assets/goSee.gif' alt='' style="width:88px;height:31px;border:0px;"/></a>`
-            movieDetails.append(goSeeBtn)
+            const goSeeHref = $(`<a href='${posters[i].goSee}' target='_blank'>`)
+            goSeeHref.attr('id', posters[i].goSee) //using url text as unique id
+            const goSeeBtn = $(`<img>`)
+            goSeeBtn.attr('src', './assets/goSee.gif')
+            // goSeeBtn.attr('style', 'width: 88px;height: 31px;border:0px;align-self: flex-end;')
+            goSeeBtn.attr('alt', '""')
+            goSeeBtn.addClass('fandango')
+            goSeeHref.append(goSeeBtn)
+            movieDetails.append(goSeeHref)
         }
         movieInsideBack.append(movieDetails);
         movie.append(movieInsideBack);
