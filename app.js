@@ -28,6 +28,6 @@ const dropdownVal = function () {
 
 $('.dropdown-item').on('click', dropdownVal);
 $('#searchBtn').on('click', searchTitles);
-$('#display-poster').on('dblclick', '.container-movie', getIMDB);
+$('#display-poster').on('click', '.container-movie', getIMDB);
 $(document).ready($("#trailer").hide());
 $(document).ready($("#searchTitle").val(""));

@@ -52,8 +52,8 @@ const render = function (posters, fromDropdownMenu) {
         movieSynopsis.addClass('movie-synopsis');
         movieSnap.append(movieSynopsis);
         movieDetails.append(movieSnap);
-        if (posters[i].goSee) {
-            const goSeeBtn = `<button style='padding:8px 15px;z-index:9999;' href=${posters[i].goSee} target='_blank'>Find in Theaters</button>`
+        if (posters[i].goSee != null) {
+            const goSeeBtn = `<a href='${posters[i].goSee}' target='_blank'><img src='./assets/goSee.gif' alt='' style="width:88px;height:31px;border:0px;"/></a>`
             movieDetails.append(goSeeBtn)
         }
         movieInsideBack.append(movieDetails);
@@ -62,10 +62,13 @@ const render = function (posters, fromDropdownMenu) {
 
         $('#display-poster').append(containerDiv);
     }
+    // $('#goSee').click(function(event) {
+    //     event.stopPropagation()
+    //     window.open(event.value, '_blank')
+    // }) 
     $('.container-movie').click( function() {
         $(".movie", this).toggleClass("movieTurn");
         $(".front", this).toggleClass("frontTurn"); 
-        console.log(this);     
     } );
     $('#movie-title').val('');
     showPoster();
