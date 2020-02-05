@@ -261,21 +261,40 @@ iframe {
 
 .dropdown:hover .dropbtn {background-color: #007bff; color: #ffffff;}
 
-.container-movie:hover .front{
-    /* .frontTurn { */
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out;
-    -moz-transition: opacity 0.5s ease-in-out;
-    -webkit-transition: opacity 0.5s ease-in-out;
-}
-.container-movie:hover .movie{
-    /* .movieTurn { */
-    transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
-    -webkit-transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
-    -moz-transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
-}
+
 .displayNone {
     display: none;
+}
+
+@media (any-hover: hover) {
+    .container-movie:hover .front{
+        /* .frontTurn { */
+        opacity: 1;
+        transition: opacity 0.5s ease-in-out;
+        -moz-transition: opacity 0.5s ease-in-out;
+        -webkit-transition: opacity 0.5s ease-in-out;
+    }
+    .container-movie:hover .movie{
+        /* .movieTurn { */
+        transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
+        -webkit-transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
+        -moz-transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
+    }
+}
+@media (any-hover: on-demand) {
+    
+    /* make above hover events into click events instead */
+        .frontTurn {
+        opacity: 1;
+        transition: opacity 0.5s ease-in-out;
+        -moz-transition: opacity 0.5s ease-in-out;
+        -webkit-transition: opacity 0.5s ease-in-out;
+    }
+        .movieTurn {
+        transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
+        -webkit-transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
+        -moz-transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
+    }
 }
 
 @media screen and (max-width: 980px) {
@@ -302,20 +321,5 @@ iframe {
 
     p {
         font-size: smaller;
-    }
-}
-@media (any-hover: on-demand) {
-    
-    /* make above hover events into click events instead */
-        .frontTurn {
-        opacity: 1;
-        transition: opacity 0.5s ease-in-out;
-        -moz-transition: opacity 0.5s ease-in-out;
-        -webkit-transition: opacity 0.5s ease-in-out;
-    }
-        .movieTurn {
-        transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
-        -webkit-transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
-        -moz-transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
     }
 }
