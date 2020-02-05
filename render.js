@@ -1,6 +1,5 @@
 const render = function (posters, fromDropdownMenu) {
     $('#display-poster').empty();
-    console.log(posters)
 
     for (let i = 0; i < posters.length; i++) {
         const containerDiv = $('<div>');
@@ -13,6 +12,7 @@ const render = function (posters, fromDropdownMenu) {
         const image = $('<img>');     
         image.addClass('poster');
         image.attr('alt', posters[i].Title);
+        image.addClass('poster');
         image.attr('src', posters[i].Poster);
         image.attr('onerror', `this.onerror=null;this.src='${posters[i].posterBackup}';`);
         movieInsideFront.append(image);
@@ -54,7 +54,7 @@ const render = function (posters, fromDropdownMenu) {
         movieDetails.append(movieSnap);
         if (posters[i].goSee) {
             const goSeeBtn = `<button style='padding:8px 15px;z-index:9999;' href=${posters[i].goSee} target='_blank'>Find in Theaters</button>`
-            movieInsideBack.append(goSeeBtn)
+            movieDetails.append(goSeeBtn)
         }
         movieInsideBack.append(movieDetails);
         movie.append(movieInsideBack);

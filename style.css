@@ -158,6 +158,7 @@ iframe {
     text-align: center;
     font-size: 3vw;
 }
+
 .container-movie .movie .front{
     max-width: 100%;
     max-height: 100%;
@@ -245,15 +246,15 @@ iframe {
 
 .dropdown:hover .dropbtn {background-color: #007bff; color: #ffffff;}
 
-/* .container-movie:hover .front{ */
-    .frontTurn {
+.container-movie:hover .front{
+    /* .frontTurn { */
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
     -moz-transition: opacity 0.5s ease-in-out;
     -webkit-transition: opacity 0.5s ease-in-out;
 }
-/* .container-movie:hover .movie{ */
-    .movieTurn {
+.container-movie:hover .movie{
+    /* .movieTurn { */
     transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
     -webkit-transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
     -moz-transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
