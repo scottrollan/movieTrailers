@@ -234,12 +234,20 @@ iframe {
     display: -webkit-box;
     -webkit-box-orient: vertical;
 }
+.buttonRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
 .fandango {
     width: 88px;
     height: 31px;
     border: 0px;
-    align-self: flex-end;
   }
+.youtube {
+    height: 31px;
+}
 .goSeeBtn {
     padding: 5px 10px;
     text-align: center;
@@ -266,7 +274,9 @@ iframe {
     -webkit-transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
     -moz-transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
 }
-
+.displayNone {
+    display: none;
+}
 
 @media screen and (max-width: 980px) {
  
@@ -292,5 +302,30 @@ iframe {
 
     p {
         font-size: smaller;
+    }
+}
+@media (any-hover: on-demand) {
+    /* remove hover effect on small screens */
+    /* .container-movie:hover .front{ 
+        transition: none;
+        -moz-transition: none;
+        -webkit-transition: none;
+    }
+    .container-movie:hover .movie{
+        transform: none;
+        -moz-transform: none;
+        -webkit-transform: none; */
+    }
+    /* and make it a click event instead */
+        .frontTurn {
+        opacity: 1;
+        transition: opacity 0.5s ease-in-out;
+        -moz-transition: opacity 0.5s ease-in-out;
+        -webkit-transition: opacity 0.5s ease-in-out;
+    }
+        .movieTurn {
+        transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
+        -webkit-transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
+        -moz-transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
     }
 }

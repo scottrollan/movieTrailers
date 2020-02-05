@@ -52,17 +52,25 @@ const render = function (posters, fromDropdownMenu) {
         movieSynopsis.addClass('movie-synopsis');
         movieSnap.append(movieSynopsis);
         movieDetails.append(movieSnap);
-        if (posters[i].goSee != null) {
-            const goSeeHref = $(`<a href='${posters[i].goSee}' target='_blank'>`)
-            goSeeHref.attr('id', posters[i].goSee) //using url text as unique id
-            const goSeeBtn = $(`<img>`)
-            goSeeBtn.attr('src', './assets/goSee.gif')
-            // goSeeBtn.attr('style', 'width: 88px;height: 31px;border:0px;align-self: flex-end;')
-            goSeeBtn.attr('alt', '""')
-            goSeeBtn.addClass('fandango')
-            goSeeHref.append(goSeeBtn)
-            movieDetails.append(goSeeHref)
+        const buttonRow = $('<div>')
+        buttonRow.addClass('buttonRow')
+        const youtubeTrailer = $(`<img>`)
+        youtubeTrailer.attr('src', './assets/youtube.png')
+        youtubeTrailer.addClass('youtube')
+        const goSeeHref = $(`<a href='${posters[i].goSee}' target='_blank'>`)
+        goSeeHref.attr('id', posters[i].goSee) //using url text as unique id
+        const goSeeBtn = $(`<img>`)
+        goSeeBtn.attr('src', './assets/goSee.gif')
+        // goSeeBtn.attr('style', 'width: 88px;height: 31px;border:0px;align-self: flex-end;')
+        goSeeBtn.attr('alt', '""')
+        goSeeBtn.addClass('fandango')
+        goSeeHref.append(goSeeBtn)
+        buttonRow.append(goSeeHref)
+        buttonRow.append(youtubeTrailer)
+        if (posters[i].goSee === null) {
+            goSeeHref.addClass('displayNone')
         }
+        movieDetails.append(buttonRow)
         movieInsideBack.append(movieDetails);
         movie.append(movieInsideBack);
         containerDiv.append(movie);
