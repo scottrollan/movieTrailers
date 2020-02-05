@@ -266,7 +266,7 @@ iframe {
     display: none;
 }
 
-@media (any-hover: hover) {
+@media (hover: hover) {
     .container-movie:hover .front{
         /* .frontTurn { */
         opacity: 1;
@@ -281,7 +281,7 @@ iframe {
         -moz-transform: rotateY(-78deg) translateX(-70px) translateZ(0px);
     }
 }
-@media (any-hover: on-demand) {
+@media (any-hover: on-demand), (hover: on-demand), (pointer: coarse) {
     
     /* make above hover events into click events instead */
         .frontTurn {
