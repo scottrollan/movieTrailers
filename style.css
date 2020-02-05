@@ -305,18 +305,8 @@ iframe {
     }
 }
 @media (any-hover: on-demand) {
-    /* remove hover effect on small screens */
-    /* .container-movie:hover .front{ 
-        transition: none;
-        -moz-transition: none;
-        -webkit-transition: none;
-    }
-    .container-movie:hover .movie{
-        transform: none;
-        -moz-transform: none;
-        -webkit-transform: none; */
-    }
-    /* and make it a click event instead */
+    
+    /* make above hover events into click events instead */
         .frontTurn {
         opacity: 1;
         transition: opacity 0.5s ease-in-out;
