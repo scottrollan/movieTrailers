@@ -2,46 +2,54 @@ body {
     background-color: black;
     overflow-y: scroll;
     overflow-x: hidden;
-    padding-bottom: 30%;
-    font-family: 'Open Sans', sans-serif;
+    padding:10px 5%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #464646;
     min-height: 100%;
 }
 
 #header {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 12vh;
+    font-size: calc(20px + 3vw);
     font-weight: 200;
     text-align: center;
     color: #7a7a7a;
 }
-
+  /* Search Input Section */
 #searchArea {
-    margin: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    justify-content: center;
+    width: 94%;
     max-width: 500px;
 }
-
-#searchTitle,
-button,
-iframe {
-    margin-bottom: 2%;
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+#dropBtn {
+    width: 100%;
+    background-color: #007bff;
+    margin-bottom: 0;
+}
+.dropdown-menu {
+    width: 100%;
     text-align: center;
+    margin-top: 0;
 }
-p {
-    margin-left: 2%;
+.dropdown-item:hover {
+    background-color: #007bff;
+    cursor: pointer;
 }
+#searchInput {
+    text-align: center;
+    margin: 10px 0;
+}
+
 form {
     text-align: center;
 }
-#searchTitle {
-    width: 100%;
-    height: 6vh;
-    min-height: 26px;
-    font-size: 1.8vw;
-}
-button {
-    height: 6vh;
-    min-height: 26px;
-}
+
+
 #trailer {
     display: inline-flex;
     margin: 0 auto;
@@ -54,50 +62,16 @@ iframe {
     color: #ffffff;
     width: 38vw;
     font-size: 18px;
+    padding: 2%;
 }
 
 #movie-poster {
     width: 7.51em;
     height: 10em;
 }
-
-.row {
-    margin-bottom: 2%;
-}
-
-.dropbtn {
-    width: 100%;
-    background-color: transparent;
-    color: #007bff;
-    padding: 14px;
-    font-size: 22px;
-    border-color: #007bff;
-    border-radius: 2px;
-    height: 6vh;
-    line-height: 3vh;
-  }
-  
-  .dropdown {
-    position: relative;
-    display: block;
-    width: 100%;
-    text-align: center;
-     }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: gray;
-    color: white;
-    width: 100%;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    cursor: pointer;
-  }
  
-#display-poster{
-	position: absolute;
+#poster-area{
+	/* position: absolute; */
 	width: 100%;
 	height: 100%;
 	display: flex;
@@ -198,16 +172,17 @@ iframe {
 	text-align: left;
 	text-transform: uppercase;
 }
-.movie-details h1 span{
-	font-size: 14px;
-	font-weight: 400;
-	color: #aaa;
-	text-transform: lowercase;
+#subHeading {
+    font-size: 12px;
+    color: #cccccc;
+    text-decoration: none;
+    text-transform: none;
 }
 .actors {
-	font-size: 12px;
-	line-height: 15px;
+    font-size: 12px;
+    color: black;
 }
+
 .movie-tags{
     display: flex;
     flex-direction: row;
@@ -215,7 +190,6 @@ iframe {
     justify-content: flex-start;    
 }
 .movie-tags .tags{
-    flex-shrink: 4;
 	background-color: #ccc;
 	margin: 2px 3px 2px 0;
 	padding: 3px 7px;
@@ -225,7 +199,7 @@ iframe {
 }
 
 .movie-synopsis{
-	font-size: 12px;
+    color: black;
 	line-height: 15px;
     padding: 10px, 10px 0 10px;
     overflow: hidden;
@@ -248,20 +222,14 @@ iframe {
 .youtube {
     height: 31px;
 }
+.youtube:hover {
+    cursor: pointer;
+}
 .goSeeBtn {
     padding: 5px 10px;
     text-align: center;
     background-color: gray;
 }
-
-
-.dropdown-content a:hover {background-color: #007bff;}
-
-.dropdown:hover .dropdown-content {display: block;}  
-
-.dropdown:hover .dropbtn {background-color: #007bff; color: #ffffff;}
-
-
 .displayNone {
     display: none;
 }
@@ -298,17 +266,10 @@ iframe {
 }
 
 @media screen and (max-width: 980px) {
- 
-    #header {
-        font-size: 6vh;
-    }
-    .dropdown,
-    #searchTitle,
-    #searchtn {
-        font-size: 3vh;
-    }
+
     #trailer {
-        display: inline;
+        display: flex;
+        flex-direction: column;
     }
     iframe {
         width: 94vw;

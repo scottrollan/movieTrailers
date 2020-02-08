@@ -1,33 +1,36 @@
-const getIMDB = function () {
-    imdbValue = $(this).attr('imdb-id');
-    source = $(this).attr('src');
-    getTMDBID(imdbValue, source);
-}
+const searchTitles = function(e) {
+  e.preventDefault();
+  const title = $("#searchInput")
+    .val()
+    .trim();
+  getTitlePoster(title);
+  $("#searchInput").empty();
+};
 
-const searchTitles = function (e) {
-    e.preventDefault();
-    const title = $('#searchTitle').val().trim();
-    getTitlePoster(title);
-    $('#searchTitle').empty();
-}
+const showTrailer = function() {
+  $("#trailer").show();
+  $("#back").show();
+  $("#poster-area").hide();
+};
 
-const showTrailer = function () {
-    $('#trailer').show();
-    $('#display-poster').hide();
-}
+const showPoster = function() {
+  $("#trailer").hide();
+  $("#back").hide();
+  $("iframe").attr("src", $("iframe").attr("src")); //stops video play
+  $("#poster-area").show();
+};
 
-const showPoster = function () {
-    $('#trailer').hide();
-    $('#display-poster').show();
-}
+const dropdownVal = function() {
+  const inputVal = $(this).attr("action");
+  getPopular(inputVal);
+};
 
-const dropdownVal = function () {
-    const inputVal = $(this).attr('action');
-    getPopular(inputVal);
-}
-
-$('.dropdown-item').on('click', dropdownVal);
-$('#searchBtn').on('click', searchTitles);
-$('#display-poster').on('click', '.container-movie', getIMDB);
+$(".dropdown-item").on("click", dropdownVal);
+$("#searchBtn").on("click", searchTitles);
+$("#back").on("click", showPoster);
+// $('.youtube').on('click', '.container-movie', getIMDB);
 $(document).ready($("#trailer").hide());
+$(document).ready($("#back").hide());
 $(document).ready($("#searchTitle").val(""));
+
+
