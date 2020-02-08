@@ -7,7 +7,7 @@ const searchTitles = function(e) {
   $("#searchInput").empty();
 };
 
-const showTrailer = function() {
+showTrailer = () => {
   $("#trailer").show();
   $("#back").show();
   $("#poster-area").hide();
@@ -28,7 +28,6 @@ const dropdownVal = function() {
 $(".dropdown-item").on("click", dropdownVal);
 $("#searchBtn").on("click", searchTitles);
 $("#back").on("click", showPoster);
-// $('.youtube').on('click', '.container-movie', getIMDB);
 $(document).ready($("#trailer").hide());
 $(document).ready($("#back").hide());
 $(document).ready($("#searchTitle").val(""));

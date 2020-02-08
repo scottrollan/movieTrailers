@@ -26,41 +26,27 @@ const render = function(posters, fromDropdownMenu) {
     movieInsideBack.addClass("movie-inside back");
     const backImage = $('<img style="max-height:36%;">');
     backImage.addClass("poster");
-    backImage.attr("id", "posterBack")
-    if(posters[i].backdropPath && posters[i].backdropPath != 'https://image.tmdb.org/t/p/w500null') {
+    backImage.attr("id", "posterBack");
+    if (
+      posters[i].backdropPath &&
+      posters[i].backdropPath != "https://image.tmdb.org/t/p/w500null"
+    ) {
       backImage.attr("src", posters[i].backdropPath);
-    }else{
+    } else {
       backImage.attr("src", "./assets/movieReel.png");
     }
-    
 
     movieInsideBack.append(backImage);
     const movieDetails = $("<div>");
     movieDetails.addClass("movie-details");
     const movieSnap = $("<div>");
     movieSnap.addClass("movie-snap");
-    const backHeading = $(
-      `<h1>${posters[i].Title}<p id="subHeading">${posters[i].Year}${posters[i].runtime}${posters[i].rated}</p></h1>`
-    );
+    const backHeading = $(`<h1>${posters[i].Title}</h1>`);
     movieSnap.append(backHeading);
 
-    const movieTags = $("<div>");
-    movieTags.addClass("movie-tags");
+    const year = $(`<p id="metaData">${posters[i].Year}</p>`)
+    movieSnap.append(year)
 
-    if (posters[i].genres) {
-      posters[i].genres.map(g => {
-        const listItem = $(`<span style="color:white;">${g}</span>`);
-        listItem.addClass("tags");
-        movieTags.append(listItem);
-      });
-    }
-    if (posters[i].actors) {
-      const actors = $(`<p>${posters[i].actors}</p>`);
-      actors.addClass("actors");
-      movieSnap.append(actors);
-    }
-
-    movieSnap.append(movieTags);
     const movieSynopsis = $(`<p>${posters[i].overview}</p>`);
     movieSynopsis.addClass("movie-synopsis");
     movieSnap.append(movieSynopsis);
@@ -69,12 +55,16 @@ const render = function(posters, fromDropdownMenu) {
     const buttonRow = $("<div>");
     buttonRow.addClass("buttonRow");
 
-    let elem = posters[i].imdbID;
     const youtubeTrailer = $(`<img>`);
-    youtubeTrailer.attr("id", posters[i].imdbID);
     youtubeTrailer.attr("title", posters[i].Title);
     youtubeTrailer.attr("overview", posters[i].overview);
     youtubeTrailer.attr("vKey", posters[i].trailerKey);
+    youtubeTrailer.attr(
+      "metaData",
+      posters[i].Year + posters[i].runtime + posters[i].rated
+    );
+    youtubeTrailer.attr("genres", posters[i].genres);
+    youtubeTrailer.attr("actors", posters[i].actors);
     youtubeTrailer.attr("src", "./assets/youtube.png");
     youtubeTrailer.addClass("youtube");
 
@@ -92,13 +82,12 @@ const render = function(posters, fromDropdownMenu) {
     }
     if (posters[i].trailerKey === null) {
       youtubeTrailer.addClass("displayNone");
-    }   
+    }
 
     movieDetails.append(buttonRow);
     movieInsideBack.append(movieDetails);
     movie.append(movieInsideBack);
     containerDiv.append(movie);
-
 
     $("#poster-area").append(containerDiv);
   }
@@ -108,7 +97,14 @@ const render = function(posters, fromDropdownMenu) {
   });
 
   $(".youtube").on("click", function() {
-    seeTrailer($(this).attr("title"),$(this).attr("overview"),$(this).attr("vKey"));
+    seeTrailer(
+      $(this).attr("title"),
+      $(this).attr("overview"),
+      $(this).attr("vKey"),
+      $(this).attr("metaData"),
+      $(this).attr("genres"),
+      $(this).attr("actors")
+    );
   });
 
   $("#movie-title").val("");

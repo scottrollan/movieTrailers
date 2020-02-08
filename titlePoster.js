@@ -16,19 +16,19 @@ const getTitlePoster = function(title) {
         url: queryURL3,
         method: "GET"
       }).then(function(responseB) {
-        if(responseB.videos.results.length){
-        let objectAddB = {
-          backdropPath: `https://image.tmdb.org/t/p/w500${responseB.backdrop_path}`,
-          trailerKey: responseB.videos.results[0].key
-        };
-        $.extend(posters[i], objectAddB);
-      }else{
-        let objectAddB = {
-          backdropPath: `https://image.tmdb.org/t/p/w500${responseB.backdrop_path}`,
-          trailerKey: null
-        };
-        $.extend(posters[i], objectAddB);
-      }
+        if (responseB.videos.results.length) {
+          let objectAddB = {
+            backdropPath: `https://image.tmdb.org/t/p/w500${responseB.backdrop_path}`,
+            trailerKey: responseB.videos.results[0].key
+          };
+          $.extend(posters[i], objectAddB);
+        } else {
+          let objectAddB = {
+            backdropPath: `https://image.tmdb.org/t/p/w500${responseB.backdrop_path}`,
+            trailerKey: null
+          };
+          $.extend(posters[i], objectAddB);
+        }
       });
       $.ajax({
         url: `https://www.omdbapi.com/?i=${imdbID}&plot=long&apikey=eb08547`,
@@ -47,36 +47,34 @@ const getTitlePoster = function(title) {
           genres: responseT.Genre.split(",") // array of strings e.g. ["Drama", "Comedy"...]
         };
         $.extend(objectAdd, genreKey);
-        $.extend(posters[i], objectAdd); 
-        render(posters, false)
+        $.extend(posters[i], objectAdd);
+        render(posters, false);
       });
     }
-  })
-  console.log(posters[i])
+  });
+};
 
-}
+seeTrailer = (title, overview, vKey, metaData, genres, actors) => {
+  $("#inside-trailer").empty();
+  $("#brief").empty();
+  $("#metaData").empty();
 
-seeTrailer = (title, overview, vKey) => {
-  // const apikey = "2404f28934c0e486a4e4a4accf9101c5";
-  // const queryURL = `https://api.themoviedb.org/3/movie/${data}?api_key=${apikey}&append_to_response=videos`;
-  // $.ajax({
-  //   url: queryURL,
-  //   method: "GET"
-  // }).then(function(res) {
-    $("#inside-trailer").empty()
-    $("#brief").empty()
-  //   const vKey = res.videos.results[0].key
-  //   const title = res.title
-  //   const brief = res.overview
-    const titleHolder = `<h5>${title}</h5>`
-    const briefHolder = `<p>${overview}</p>`
-    $("#brief").append(titleHolder).append(briefHolder)
+  const titleHolder = `<h5>${title}</h5>`;
+  const overviewHolder = `<p>${overview}</p>`;
+  const metaDataHolder = `<p>${metaData}</p>`;
+  const actorsHolder = `<p>${actors}</p>`;
+  const genresHolder = $(`<div>${genres}</div>`);
+  genresHolder.addClass("movie-tags");
+ 
+  $("#brief")
+    .append(titleHolder)
+    .append(overviewHolder)
+  $("#movieInfo").append(metaDataHolder).append(actorsHolder).append(genresHolder)
 
-    const src = `https://www.youtube.com/embed/${vKey}`
-    $("iframe").attr("src", src)
-    showTrailer()
-  // })
-}
+  const src = `https://www.youtube.com/embed/${vKey}`;
+  $("iframe").attr("src", src);
+  showTrailer();
+};
 
 const getPopular = function(clickedOption) {
   let posters = [];
@@ -117,7 +115,7 @@ const getPopular = function(clickedOption) {
     }
     for (let i = 0; i < posters.length; i++) {
       const lookup = posters[i].tmdbID;
-      let imdbID = ''
+      let imdbID = "";
       const apikey = "2404f28934c0e486a4e4a4accf9101c5";
       const queryURL3 = `https://api.themoviedb.org/3/movie/${lookup}?api_key=${apikey}&append_to_response=videos`;
       $.ajax({
@@ -125,42 +123,39 @@ const getPopular = function(clickedOption) {
         method: "GET"
       }).then(function(responseB) {
         imdbID = responseB.imdb_id;
-        if(responseB.videos.results.length){
-        let objectAddB = {
-          imdbID: responseB.imdb_id,
-          trailerKey: responseB.videos.results[0].key,
-        };
-        $.extend(posters[i], objectAddB);
-      }else{
-        let objectAddB = {
-          imdbID: responseB.imdb_id,
-          trailerKey: null,
-        };
-        $.extend(posters[i], objectAddB);
-      }
-      // });
-      $.ajax({
-        url: `https://www.omdbapi.com/?i=${imdbID}&plot=long&apikey=eb08547`,
-        method: "GET"
-      }).then(function(responseT) {
-        let objectAdd = {
-          rated: ` - rated: ${responseT.Rated}`,
-          runtime: ` - runtime: ${responseT.Runtime}`,
-          ratings: responseT.Ratings, //array of objects e.g. [{Source: "IMDB", Value: "66%"}, ...]
-          website: responseT.Website,
-          actors: responseT.Actors,
-        };
-        let genreKey = {
-          genres: responseT.Genre.split(",") // array of strings e.g. ["Drama", "Comedy"...]
-        };
-        $.extend(objectAdd, genreKey);
-        $.extend(posters[i], objectAdd); 
-        render(posters, true)
-
+        if (responseB.videos.results.length) {
+          let objectAddB = {
+            imdbID: responseB.imdb_id,
+            trailerKey: responseB.videos.results[0].key
+          };
+          $.extend(posters[i], objectAddB);
+        } else {
+          let objectAddB = {
+            imdbID: responseB.imdb_id,
+            trailerKey: null
+          };
+          $.extend(posters[i], objectAddB);
+        }
+        // });
+        $.ajax({
+          url: `https://www.omdbapi.com/?i=${imdbID}&plot=long&apikey=eb08547`,
+          method: "GET"
+        }).then(function(responseT) {
+          let objectAdd = {
+            rated: ` - rated: ${responseT.Rated}`,
+            runtime: ` - runtime: ${responseT.Runtime}`,
+            ratings: responseT.Ratings, //array of objects e.g. [{Source: "IMDB", Value: "66%"}, ...]
+            website: responseT.Website,
+            actors: responseT.Actors
+          };
+          let genreKey = {
+            genres: responseT.Genre.split(",") // array of strings e.g. ["Drama", "Comedy"...]
+          };
+          $.extend(objectAdd, genreKey);
+          $.extend(posters[i], objectAdd);
+          render(posters, true);
+        });
       });
-
-    });
     }
   });
-
 };
