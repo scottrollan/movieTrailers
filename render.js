@@ -2,6 +2,7 @@ const render = function(posters, fromDropdownMenu) {
   $("#poster-area").empty();
 
   for (let i = 0; i < posters.length; i++) {
+    setTimeout(console.log("inside the for loop in render, posters[i].ratings: " + posters[i].ratings),1100)
     const containerDiv = $("<div>");
     containerDiv.addClass("container-movie");
     const movie = $("<div>");
@@ -56,6 +57,8 @@ const render = function(posters, fromDropdownMenu) {
     buttonRow.addClass("buttonRow");
 
     const youtubeTrailer = $(`<img>`);
+    youtubeTrailer.attr("src", "./assets/youtube.png");
+    youtubeTrailer.addClass("youtube");
     youtubeTrailer.attr("title", posters[i].Title);
     youtubeTrailer.attr("overview", posters[i].overview);
     youtubeTrailer.attr("vKey", posters[i].trailerKey);
@@ -65,8 +68,9 @@ const render = function(posters, fromDropdownMenu) {
     );
     youtubeTrailer.attr("genres", posters[i].genres);
     youtubeTrailer.attr("actors", posters[i].actors);
-    youtubeTrailer.attr("src", "./assets/youtube.png");
-    youtubeTrailer.addClass("youtube");
+    youtubeTrailer.attr("ratings", posters[i].ratings);
+
+
 
     const goSeeHref = $(`<a href='${posters[i].goSee}' target='_blank'>`);
     const goSeeBtn = $(`<img>`);
@@ -103,7 +107,8 @@ const render = function(posters, fromDropdownMenu) {
       $(this).attr("vKey"),
       $(this).attr("metaData"),
       $(this).attr("genres"),
-      $(this).attr("actors")
+      $(this).attr("actors"),
+      $(this).attr("ratings")
     );
   });
 

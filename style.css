@@ -49,7 +49,7 @@ form {
 }
 
 
-   /* Movie trailer section */
+   /* Youtube trailer section */
 #trailer {
     margin: 0;
     width: 100%;
@@ -74,9 +74,26 @@ form {
     text-decoration: none;
     text-transform: none;
 }
-#actors {
-    font-size: large;
+.ratingList {
+    list-style-type: none;
 }
+.ratingList li {
+    font-style: italic;
+    line-height: 2;
+}
+.actorList {
+    list-style-type: none; 
+    display: flex; 
+    flex-direction: row;
+}
+.actorList li {
+    margin-right: 10px; 
+    color: #747474; 
+    padding: 5px 10px; 
+    background-color: #e4e4e4; 
+    border-radius: 5px;
+}
+
 
    /* Poster section */
 

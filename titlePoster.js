@@ -1,4 +1,4 @@
-// let posters = []
+let posters = []
 
 const getTitlePoster = function(title) {
   $("#searchInput").empty();
@@ -38,19 +38,21 @@ const getTitlePoster = function(title) {
         url: `https://www.omdbapi.com/?i=${imdbID}&plot=long&apikey=eb08547`,
         method: "GET"
       }).then(function(responseT) {
+        const ratingArray = []
+        responseT.Ratings.map(r => {
+          const ratingString = `${r.Source} score: ${r.Value}`
+          ratingArray.push(ratingString)
+        })
         let objectAdd = {
           rated: ` - rated: ${responseT.Rated}`,
           runtime: ` - runtime: ${responseT.Runtime}`,
+          ratings: ratingArray,
           overview: responseT.Plot,
-          ratings: responseT.Ratings, //array of objects e.g. [{Source: "IMDB", Value: "66%"}, ...]
           website: responseT.Website,
           actors: responseT.Actors,
-          goSee: null
-        };
-        let genreKey = {
+          goSee: null,
           genres: responseT.Genre.split(",") // array of strings e.g. ["Drama", "Comedy"...]
         };
-        $.extend(objectAdd, genreKey);
         $.extend(posters[i], objectAdd);    
         return posters;   
       });
@@ -58,35 +60,9 @@ const getTitlePoster = function(title) {
     setTimeout(() => render(posters, false), 400)
   });
 };
-/////// See Trailer //////
-seeTrailer = (title, overview, vKey, metaData, genres, actors) => {
-  $("#inside-trailer").empty();
-  $("#brief").empty();
-  $("#movieInfo").empty();
 
-  const titleHolder = `<h5>${title}</h5>`;
-  const overviewHolder = `<p>${overview}</p>`;
-  const metaDataHolder = `<p id="metaData">${metaData}</p>`;
-  const actorsHolder = `<p id="actors">${actors}</p>`;
-  const genresHolder = $(`<div>${genres}</div>`);
-  genresHolder.addClass("movie-tags");
-
-  $("#brief")
-    .append(titleHolder)
-    .append(metaDataHolder)
-    .append(overviewHolder);
-
-  $("#movieInfo")
-    .append(actorsHolder)
-    .append(genresHolder);
-
-  const src = `https://www.youtube.com/embed/${vKey}`;
-  $("iframe").attr("src", src);
-  showTrailer();
-};
 ////// Get from Dropdown //////
 const getPopular = function(clickedOption) {
-  let posters = [];
   const currentlyInTheaters = clickedOption;
   const popURL = `https://api.themoviedb.org/3/movie/${clickedOption}?api_key=2404f28934c0e486a4e4a4accf9101c5&language=en-US&page=1&region=US`;
   $.ajax({
@@ -150,25 +126,68 @@ const getPopular = function(clickedOption) {
           url: `https://www.omdbapi.com/?i=${imdbID}&plot=long&apikey=eb08547`,
           method: "GET"
         }).then(function(responseT) {
+          const ratingArray = []
+          responseT.Ratings.map(r => {
+            const ratingString = `${r.Source} score: ${r.Value}`
+            ratingArray.push(ratingString)
+          })
           let objectAdd = {
             rated: ` - rated: ${responseT.Rated}`,
             runtime: ` - runtime: ${responseT.Runtime}`,
-            ratings: responseT.Ratings, //array of objects e.g. [{Source: "IMDB", Value: "66%"}, ...]
+            ratings: ratingArray, 
             website: responseT.Website,
-            actors: responseT.Actors
-          };
-          let genreKey = {
+            actors: responseT.Actors,
             genres: responseT.Genre.split(",") // array of strings e.g. ["Drama", "Comedy"...]
           };
-          $.extend(objectAdd, genreKey);
           $.extend(posters[i], objectAdd);
           return posters;
         });
-        return posters
       });
     }
-    return posters
   });
   setTimeout(() => render(posters, true), 400);
+  setTimeout(() => console.log(posters), 500)
+};
 
+/////// See youtube Trailer //////
+seeTrailer = (title, overview, vKey, metaData, genres, actors, ratings) => {
+  $("#inside-trailer").empty();
+  $("#brief").empty();
+  $("#movieInfo").empty();
+
+  const titleHolder = $(`<h5>${title}</h5>`);
+  const metaDataHolder = $(`<p id="metaData">${metaData}</p>`);
+  const overviewHolder = $(`<p>${overview}</p>`);
+  
+  const ratingArray = ratings.split(',')
+  const ratingsHolder = $('<ul>')
+  ratingsHolder.addClass('ratingList')
+  ratingArray.map(r => {
+    const rli = `<li>${r}</li>`
+    ratingsHolder.append(rli)
+  })
+
+  const actorArray = actors.split(',')
+  const actorsHolder = $('<ul>');
+  actorsHolder.addClass('actorList')
+  actorArray.map(a => {
+    const ali = `<li>${a}</li>`
+    actorsHolder.append(ali)
+  })
+  const genresHolder = $(`<div>${genres}</div>`);
+  genresHolder.addClass("movie-tags");
+
+  $("#brief")
+    .append(titleHolder)
+    .append(metaDataHolder)
+    .append(overviewHolder)
+    .append(ratingsHolder)
+
+  $("#movieInfo")
+    .append(actorsHolder)
+    .append(genresHolder);
+
+  const src = `https://www.youtube.com/embed/${vKey}`;
+  $("iframe").attr("src", src);
+  showTrailer();
 };
