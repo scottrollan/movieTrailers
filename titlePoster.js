@@ -174,7 +174,7 @@ seeTrailer = (title, overview, vKey, metaData, genres, actors, ratings) => {
     const ali = `<a href='https://www.imdb.com/find?navbar-search-category-select=on&q=${actorName}&ref_=nv_sr_sm' target='_blank'><li>${a}</li></a>`
     actorsHolder.append(ali)
   })
-  const genresHolder = $(`<div>${genres}</div>`);
+  const genresHolder = $(`<div>${genres.toUpperCase().split(',').join('   -   ')}</div>`);
   genresHolder.addClass("movie-tags");
 
   $("#brief")

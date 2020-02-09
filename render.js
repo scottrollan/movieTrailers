@@ -2,7 +2,6 @@ const render = function(posters, fromDropdownMenu) {
   $("#poster-area").empty();
 
   for (let i = 0; i < posters.length; i++) {
-    setTimeout(console.log("inside the for loop in render, posters[i].ratings: " + posters[i].ratings),1100)
     const containerDiv = $("<div>");
     containerDiv.addClass("container-movie");
     const movie = $("<div>");
