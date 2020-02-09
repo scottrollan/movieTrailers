@@ -48,19 +48,24 @@
           </div>
         </div>
         <form>
-          <input class="form-control" id="searchInput" type="text" placeholder="Search for a Movie by Name" />
+          <input
+            class="form-control"
+            id="searchInput"
+            type="text"
+            placeholder="Search for a Movie by Name"
+          />
           <button class="btn btn-outline-primary" id="searchBtn">
             <span><i class="fa fa-search"></i></span>
           </button>
         </form>
-        <div>
-          <button id="back" class="btn btn-outline-primary">Back</button>
-        </div>
       </div>
 
       <div id="movieArea">
         <div id="poster-area"></div>
         <div id="trailer">
+          <div>
+            <button id="back" class="btn btn-outline-primary">Back</button>
+          </div>
           <div id="screenBrief">
             <iframe
               id="iframe"
@@ -69,8 +74,8 @@
               allowfullscreen
             ></iframe>
             <span id="brief"></span>
-          <div id="movieInfo"></div>
-        </div>
+            <div id="movieInfo"></div>
+          </div>
         </div>
       </div>
     </div>

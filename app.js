@@ -4,13 +4,13 @@ const searchTitles = function(e) {
     .val()
     .trim();
   getTitlePoster(title);
-  $("#searchInput").empty();
 };
 
 showTrailer = () => {
   $("#trailer").show();
   $("#back").show();
   $("#poster-area").hide();
+  $("#searchArea").hide();
 };
 
 const showPoster = function() {
@@ -18,6 +18,8 @@ const showPoster = function() {
   $("#back").hide();
   $("iframe").attr("src", $("iframe").attr("src")); //stops video play
   $("#poster-area").show();
+  $("#searchArea").show();
+
 };
 
 const dropdownVal = function() {
@@ -30,6 +32,7 @@ $("#searchBtn").on("click", searchTitles);
 $("#back").on("click", showPoster);
 $(document).ready($("#trailer").hide());
 $(document).ready($("#back").hide());
-$(document).ready($("#searchTitle").val(""));
+// $(document).ready($("#searchInput").val(""));
+$(document).ready($("#searchInput").empty());
 
 

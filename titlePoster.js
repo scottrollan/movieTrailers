@@ -1,4 +1,8 @@
+// let posters = []
+
 const getTitlePoster = function(title) {
+  $("#searchInput").empty();
+
   $.ajax({
     url: `https://www.omdbapi.com/?s=${title}&type=movie&apikey=e0c3e966`,
     method: "GET"
@@ -47,35 +51,40 @@ const getTitlePoster = function(title) {
           genres: responseT.Genre.split(",") // array of strings e.g. ["Drama", "Comedy"...]
         };
         $.extend(objectAdd, genreKey);
-        $.extend(posters[i], objectAdd);
-        render(posters, false);
+        $.extend(posters[i], objectAdd);    
+        return posters;   
       });
     }
+    setTimeout(() => render(posters, false), 400)
   });
 };
-
+/////// See Trailer //////
 seeTrailer = (title, overview, vKey, metaData, genres, actors) => {
   $("#inside-trailer").empty();
   $("#brief").empty();
-  $("#metaData").empty();
+  $("#movieInfo").empty();
 
   const titleHolder = `<h5>${title}</h5>`;
   const overviewHolder = `<p>${overview}</p>`;
-  const metaDataHolder = `<p>${metaData}</p>`;
-  const actorsHolder = `<p>${actors}</p>`;
+  const metaDataHolder = `<p id="metaData">${metaData}</p>`;
+  const actorsHolder = `<p id="actors">${actors}</p>`;
   const genresHolder = $(`<div>${genres}</div>`);
   genresHolder.addClass("movie-tags");
- 
+
   $("#brief")
     .append(titleHolder)
-    .append(overviewHolder)
-  $("#movieInfo").append(metaDataHolder).append(actorsHolder).append(genresHolder)
+    .append(metaDataHolder)
+    .append(overviewHolder);
+
+  $("#movieInfo")
+    .append(actorsHolder)
+    .append(genresHolder);
 
   const src = `https://www.youtube.com/embed/${vKey}`;
   $("iframe").attr("src", src);
   showTrailer();
 };
-
+////// Get from Dropdown //////
 const getPopular = function(clickedOption) {
   let posters = [];
   const currentlyInTheaters = clickedOption;
@@ -153,9 +162,13 @@ const getPopular = function(clickedOption) {
           };
           $.extend(objectAdd, genreKey);
           $.extend(posters[i], objectAdd);
-          render(posters, true);
+          return posters;
         });
+        return posters
       });
     }
+    return posters
   });
+  setTimeout(() => render(posters, true), 400);
+
 };
