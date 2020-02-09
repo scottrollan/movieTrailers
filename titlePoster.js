@@ -146,7 +146,6 @@ const getPopular = function(clickedOption) {
     }
   });
   setTimeout(() => render(posters, true), 400);
-  setTimeout(() => console.log(posters), 500)
 };
 
 /////// See youtube Trailer //////
@@ -171,7 +170,8 @@ seeTrailer = (title, overview, vKey, metaData, genres, actors, ratings) => {
   const actorsHolder = $('<ul>');
   actorsHolder.addClass('actorList')
   actorArray.map(a => {
-    const ali = `<li>${a}</li>`
+    const actorName = a.split(' ').join('+')
+    const ali = `<a href='https://www.imdb.com/find?navbar-search-category-select=on&q=${actorName}&ref_=nv_sr_sm' target='_blank'><li>${a}</li></a>`
     actorsHolder.append(ali)
   })
   const genresHolder = $(`<div>${genres}</div>`);
