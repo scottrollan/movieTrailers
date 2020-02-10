@@ -61,7 +61,7 @@ const render = function(posters, fromDropdownMenu) {
     const buttonRow = $("<div>");
     buttonRow.addClass("buttonRow");
 
-    const youtubeHref = $('<a href="#">');
+    const youtubeHref = $('<a>');
     const youtubeTrailer = $(`<img/>`);
     youtubeTrailer.attr("src", "./assets/youtube.png");
     youtubeTrailer.addClass("youtube");
