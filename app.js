@@ -28,6 +28,9 @@ $(".dropdown-item").on("click", function() {
 });
 $("#searchBtn").on("click", searchTitles);
 $("#back").on("click", showPoster);
+$("#closeModal").on("click", function() {
+    $("#moreInfoModal").removeClass("displayYes")
+})
 $(document).ready($("#trailer").hide());
 $(document).ready($("#back").hide());
 $(document).ready($("#searchInput").empty());

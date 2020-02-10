@@ -41,17 +41,17 @@ const render = function(posters, fromDropdownMenu) {
     movieDetails.addClass("movie-details");
     const movieSnap = $("<div>");
     movieSnap.addClass("movie-snap");
-    if(posters[i].Title.length > 30) {
-      const backHeading = $(`<p>${posters[i].Title}</p>`)
-      backHeading.addClass('smallerTitle')
+    if (posters[i].Title.length > 30) {
+      const backHeading = $(`<p>${posters[i].Title}</p>`);
+      backHeading.addClass("smallerTitle");
       movieSnap.append(backHeading);
-    }else if(posters[i].Title.length > 0) {
-      const backHeading = $(`<h4>${posters[i].Title}</h4>`)
-      movieSnap.append(backHeading)
+    } else if (posters[i].Title.length > 0) {
+      const backHeading = $(`<h4>${posters[i].Title}</h4>`);
+      movieSnap.append(backHeading);
     }
 
-    const year = $(`<p id="metaData">${posters[i].Year}</p>`)
-    movieSnap.append(year)
+    const year = $(`<p id="metaData">${posters[i].Year}</p>`);
+    movieSnap.append(year);
 
     const movieSynopsis = $(`<p>${posters[i].overview}</p>`);
     movieSynopsis.addClass("movie-synopsis");
@@ -61,8 +61,7 @@ const render = function(posters, fromDropdownMenu) {
     const buttonRow = $("<div>");
     buttonRow.addClass("buttonRow");
 
-
-    const youtubeHref = $('<a href="#">')
+    const youtubeHref = $('<a href="#">');
     const youtubeTrailer = $(`<img/>`);
     youtubeTrailer.attr("src", "./assets/youtube.png");
     youtubeTrailer.addClass("youtube");
@@ -76,8 +75,24 @@ const render = function(posters, fromDropdownMenu) {
     youtubeTrailer.attr("genres", posters[i].genres);
     youtubeTrailer.attr("actors", posters[i].actors);
     youtubeTrailer.attr("ratings", posters[i].ratings);
-    youtubeHref.append(youtubeTrailer)
+    youtubeHref.append(youtubeTrailer);
 
+    const moreInfoHref = $('<a>');
+    const moreInfo = $("<button>");
+    moreInfo.append("More Info");
+    moreInfo.addClass("btn btn secondary modalBtn");
+    moreInfo.attr("id", "modalBtn");
+    moreInfo.attr("type", "button");
+    moreInfo.attr("title", posters[i].Title);
+    moreInfo.attr("overview", posters[i].overview);
+    moreInfo.attr("genres", posters[i].genres);
+    moreInfo.attr("actors", posters[i].actors);
+    moreInfo.attr("ratings", posters[i].ratings);
+    moreInfo.attr(
+      "metaData",
+      posters[i].Year + posters[i].runtime + posters[i].rated
+    );
+    moreInfoHref.append(moreInfo);
 
     const goSeeHref = $(`<a href='${posters[i].goSee}' target='_blank'>`);
     const goSeeBtn = $(`<img>`);
@@ -88,11 +103,14 @@ const render = function(posters, fromDropdownMenu) {
 
     buttonRow.append(goSeeHref);
     buttonRow.append(youtubeHref);
+    buttonRow.append(moreInfoHref);
     if (posters[i].goSee === null) {
       goSeeHref.addClass("displayNone");
     }
     if (posters[i].trailerKey === null) {
       youtubeTrailer.addClass("displayNone");
+    } else {
+      moreInfoHref.addClass("displayNone"); //either youtube trailer or more Info button will display
     }
 
     movieDetails.append(buttonRow);
@@ -118,6 +136,16 @@ const render = function(posters, fromDropdownMenu) {
       $(this).attr("ratings")
     );
   });
+  $(".modalBtn").on("click", function() {
+    seeModal(
+      $(this).attr("title"),
+      $(this).attr("overview"),
+      $(this).attr("metaData"),
+      $(this).attr("genres"),
+      $(this).attr("actors"),
+      $(this).attr("ratings")
+    )
+  })
 
   $("#movie-title").val("");
   showPoster();

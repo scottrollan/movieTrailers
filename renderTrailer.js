@@ -9,20 +9,20 @@ seeTrailer = (title, overview, vKey, metaData, genres, actors, ratings) => {
     const overviewHolder = $(`<p>${overview}</p>`);
     
     const ratingArray = ratings.split(',')
-    const ratingsHolder = $('<ul>')
-    ratingsHolder.addClass('ratingList')
+    const ratingList = $('<ul>')
+    ratingList.addClass('ratingList')
     ratingArray.map(r => {
       const rli = `<li>${r}</li>`
-      ratingsHolder.append(rli)
+      ratingList.append(rli)
     })
   
     const actorArray = actors.split(',')
-    const actorsHolder = $('<ul>');
-    actorsHolder.addClass('actorList')
+    const actorList = $('<ul>');
+    actorList.addClass('actorList')
     actorArray.map(a => {
       const actorName = a.split(' ').join('+')
       const ali = `<a href='https://www.imdb.com/find?navbar-search-category-select=on&q=${actorName}&ref_=nv_sr_sm' target='_blank'><li>${a}</li></a>`
-      actorsHolder.append(ali)
+      actorList.append(ali)
     })
     const genresHolder = $(`<div>${genres.toUpperCase().split(',').join('   -   ')}</div>`);
     genresHolder.addClass("movie-tags");
@@ -31,10 +31,10 @@ seeTrailer = (title, overview, vKey, metaData, genres, actors, ratings) => {
       .append(titleHolder)
       .append(metaDataHolder)
       .append(overviewHolder)
-      .append(ratingsHolder)
+      .append(ratingList)
   
     $("#movieInfo")
-      .append(actorsHolder)
+      .append(actorList)
       .append(genresHolder);
   
     const src = `https://www.youtube.com/embed/${vKey}`;
