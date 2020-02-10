@@ -66,16 +66,16 @@
           <div>
             <button id="back" class="btn btn-outline-primary">Back</button>
           </div>
-          <div id="screenBrief">
-            <iframe
-              id="iframe"
-              frameborder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
+          <span id="mainScreen">
+              <iframe
+                id="iframe"
+                frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+              <div id="movieInfo"></div>
+          </span>
             <span id="brief"></span>
-            <div id="movieInfo"></div>
-          </div>
         </div>
       </div>
     </div>
@@ -85,8 +85,9 @@
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous"
     ></script>
-    <script src="render.js"></script>
-    <script src="titlePoster.js"></script>
+    <script src="renderPosters.js"></script>
+    <script src="renderTrailer.js"></script>
+    <script src="gatherPosterData.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

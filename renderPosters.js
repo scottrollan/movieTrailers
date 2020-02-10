@@ -11,7 +11,7 @@ const render = function(posters, fromDropdownMenu) {
     movieInsideFront.addClass("movie-inside front");
     const image = $("<img>");
     image.addClass("poster");
-    image.attr("alt", posters[i].Title);
+    image.attr("alt", `${posters[i].Title}`);
     image.addClass("poster");
     image.attr("src", posters[i].Poster);
     image.attr(
@@ -41,8 +41,14 @@ const render = function(posters, fromDropdownMenu) {
     movieDetails.addClass("movie-details");
     const movieSnap = $("<div>");
     movieSnap.addClass("movie-snap");
-    const backHeading = $(`<h1>${posters[i].Title}</h1>`);
-    movieSnap.append(backHeading);
+    if(posters[i].Title.length > 30) {
+      const backHeading = $(`<p>${posters[i].Title}</p>`)
+      backHeading.addClass('smallerTitle')
+      movieSnap.append(backHeading);
+    }else if(posters[i].Title.length > 0) {
+      const backHeading = $(`<h4>${posters[i].Title}</h4>`)
+      movieSnap.append(backHeading)
+    }
 
     const year = $(`<p id="metaData">${posters[i].Year}</p>`)
     movieSnap.append(year)
