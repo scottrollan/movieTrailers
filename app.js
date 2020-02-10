@@ -22,11 +22,6 @@ showPoster = () => {
   $("#searchArea").show();
 };
 
-// selectFromDropdown = (action) => {
-//   (() => getPopular(action));
-// };
-
-// $(".dropdown-item").on("click", dropdownVal);
 $(".dropdown-item").on("click", function() {
     const category = $(this).attr("action")
     getPopular(category);

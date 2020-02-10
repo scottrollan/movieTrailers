@@ -61,7 +61,9 @@ const render = function(posters, fromDropdownMenu) {
     const buttonRow = $("<div>");
     buttonRow.addClass("buttonRow");
 
-    const youtubeTrailer = $(`<img>`);
+
+    const youtubeHref = $('<a href="#">')
+    const youtubeTrailer = $(`<img/>`);
     youtubeTrailer.attr("src", "./assets/youtube.png");
     youtubeTrailer.addClass("youtube");
     youtubeTrailer.attr("title", posters[i].Title);
@@ -74,7 +76,7 @@ const render = function(posters, fromDropdownMenu) {
     youtubeTrailer.attr("genres", posters[i].genres);
     youtubeTrailer.attr("actors", posters[i].actors);
     youtubeTrailer.attr("ratings", posters[i].ratings);
-
+    youtubeHref.append(youtubeTrailer)
 
 
     const goSeeHref = $(`<a href='${posters[i].goSee}' target='_blank'>`);
@@ -85,7 +87,7 @@ const render = function(posters, fromDropdownMenu) {
     goSeeHref.append(goSeeBtn);
 
     buttonRow.append(goSeeHref);
-    buttonRow.append(youtubeTrailer);
+    buttonRow.append(youtubeHref);
     if (posters[i].goSee === null) {
       goSeeHref.addClass("displayNone");
     }
