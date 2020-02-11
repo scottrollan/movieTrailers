@@ -1,5 +1,5 @@
 const render = function(posters, fromDropdownMenu) {
-  $("#poster-area").empty();
+  $("#movieArea").empty();
 
   for (let i = 0; i < posters.length; i++) {
     const containerDiv = $("<div>");
