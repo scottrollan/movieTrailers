@@ -1,7 +1,6 @@
 let posters = []
 
 getTitlePoster = (title) => {
-  $("#poster-area").empty();
 
   $.ajax({
     url: `https://www.omdbapi.com/?s=${title}&type=movie&apikey=e0c3e966`,
