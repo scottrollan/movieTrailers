@@ -1,5 +1,5 @@
 const render = function(posters, fromDropdownMenu) {
-  $("#movieArea").empty();
+
 
   for (let i = 0; i < posters.length; i++) {
     const containerDiv = $("<div>");
@@ -61,7 +61,7 @@ const render = function(posters, fromDropdownMenu) {
     const buttonRow = $("<div>");
     buttonRow.addClass("buttonRow");
 
-    const youtubeHref = $('<a>');
+    const youtubeHref = $("<a>");
     const youtubeTrailer = $(`<img/>`);
     youtubeTrailer.attr("src", "./assets/youtube.png");
     youtubeTrailer.addClass("youtube");
@@ -77,7 +77,7 @@ const render = function(posters, fromDropdownMenu) {
     youtubeTrailer.attr("ratings", posters[i].ratings);
     youtubeHref.append(youtubeTrailer);
 
-    const moreInfoHref = $('<a>');
+    const moreInfoHref = $("<a>");
     const moreInfo = $("<button>");
     moreInfo.append("More Info");
     moreInfo.addClass("btn btn secondary modalBtn");
@@ -144,8 +144,8 @@ const render = function(posters, fromDropdownMenu) {
       $(this).attr("genres"),
       $(this).attr("actors"),
       $(this).attr("ratings")
-    )
-  })
+    );
+  });
 
   $("#movie-title").val("");
   showPoster();

@@ -1,10 +1,10 @@
 searchTitles = e => {
+  $("#poster-area").empty();
   e.preventDefault();
   const title = $("#searchInput")
     .val()
     .trim();
-  $("#poster-area").empty();
-  getTitlePoster(title);
+  titleSearch(title);
 };
 
 showTrailer = () => {
@@ -23,14 +23,14 @@ showPoster = () => {
 };
 
 $(".dropdown-item").on("click", function() {
-    const category = $(this).attr("action")
-    getPopular(category);
+  const category = $(this).attr("action");
+  selectFromDropdown(category);
 });
 $("#searchBtn").on("click", searchTitles);
 $("#back").on("click", showPoster);
 $("#closeModal").on("click", function() {
-    $("#moreInfoModal").removeClass("displayYes")
-})
+  $("#moreInfoModal").removeClass("displayYes");
+});
 $(document).ready($("#trailer").hide());
 $(document).ready($("#back").hide());
-$(document).ready($("#searchInput").empty());
+$(document).ready($("#searchInput").val(""));
