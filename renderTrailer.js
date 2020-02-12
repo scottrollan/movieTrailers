@@ -3,7 +3,8 @@ seeTrailer = (title, overview, vKey, metaData, genres, actors, ratings) => {
     $("#inside-trailer").empty();
     $("#brief").empty();
     $("#movieInfo").empty();
-  
+    // $("#back").attr('href', `#${vkey}`)
+
     const titleHolder = $(`<h5>${title}</h5>`);
     const metaDataHolder = $(`<p id="metaData">${metaData}</p>`);
     const overviewHolder = $(`<p>${overview}</p>`);
@@ -21,7 +22,7 @@ seeTrailer = (title, overview, vKey, metaData, genres, actors, ratings) => {
     actorList.addClass('actorList')
     actorArray.map(a => {
       const actorName = a.split(' ').join('+')
-      const ali = `<a href='https://www.imdb.com/find?navbar-search-category-select=on&q=${actorName}&ref_=nv_sr_sm' target='_blank'><li>${a}</li></a>`
+      const ali = `<a href='https://m.imdb.com/find?navbar-search-category-select=on&q=${actorName}&ref_=nv_sr_sm' target='_blank'><li>${a}</li></a>`
       actorList.append(ali)
     })
     const genresHolder = $(`<div>${genres.toUpperCase().split(',').join('   -   ')}</div>`);

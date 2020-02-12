@@ -9,7 +9,7 @@ seeModal = (title, overview, metaData, genres, actors, ratings) => {
   actorList.attr("id", "actorList")
   actorArray.map(a => {
     const actorName = a.split(" ").join("+");
-    const ali = `<a href='https://www.imdb.com/find?navbar-search-category-select=on&q=${actorName}&ref_=nv_sr_sm' target='_blank'><li>${a}</li></a>`;
+    const ali = `<a href='https://m.imdb.com/find?navbar-search-category-select=on&q=${actorName}&ref_=nv_sr_sm' target='_blank'><li>${a}</li></a>`;
     actorList.append(ali);
   });
 

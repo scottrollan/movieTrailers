@@ -1,9 +1,11 @@
 const render = function(posters, fromDropdownMenu) {
 
+$("#poster-area").empty()
 
   for (let i = 0; i < posters.length; i++) {
-    const containerDiv = $("<div>");
-    containerDiv.addClass("container-movie");
+    const containerDiv = $("<div>")
+    containerDiv.addClass("container-movie")
+    containerDiv.attr('id', posters[i].trailerKey)
     const movie = $("<div>");
     movie.addClass("movie");
     //front of the 3d movie element
@@ -58,24 +60,24 @@ const render = function(posters, fromDropdownMenu) {
     movieSnap.append(movieSynopsis);
     movieDetails.append(movieSnap);
 
-    const buttonRow = $("<div>");
-    buttonRow.addClass("buttonRow");
+    const buttonRow = $("<div>")
+    buttonRow.addClass("buttonRow")
 
-    const youtubeHref = $("<a>");
-    const youtubeTrailer = $(`<img/>`);
-    youtubeTrailer.attr("src", "./assets/youtube.png");
-    youtubeTrailer.addClass("youtube");
-    youtubeTrailer.attr("title", posters[i].Title);
-    youtubeTrailer.attr("overview", posters[i].overview);
-    youtubeTrailer.attr("vKey", posters[i].trailerKey);
+    const youtubeHref = $(`<a href='#${posters[i].trailerKey}>`)
+    const youtubeTrailer = $(`<img>`)
+    youtubeTrailer.attr("src", "./assets/youtube.png")
+    youtubeTrailer.addClass("youtube")
+    youtubeTrailer.attr("title", posters[i].Title)
+    youtubeTrailer.attr("overview", posters[i].overview)
+    youtubeTrailer.attr("vKey", posters[i].trailerKey)
     youtubeTrailer.attr(
       "metaData",
       posters[i].Year + posters[i].runtime + posters[i].rated
     );
-    youtubeTrailer.attr("genres", posters[i].genres);
-    youtubeTrailer.attr("actors", posters[i].actors);
-    youtubeTrailer.attr("ratings", posters[i].ratings);
-    youtubeHref.append(youtubeTrailer);
+    youtubeTrailer.attr("genres", posters[i].genres)
+    youtubeTrailer.attr("actors", posters[i].actors)
+    youtubeTrailer.attr("ratings", posters[i].ratings)
+    youtubeHref.append(youtubeTrailer)
 
     const moreInfoHref = $("<a>");
     const moreInfo = $("<button>");
