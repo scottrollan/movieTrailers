@@ -3,7 +3,8 @@ seeTrailer = (title, overview, vKey, metaData, genres, actors, ratings) => {
     $("#inside-trailer").empty();
     $("#brief").empty();
     $("#movieInfo").empty();
-    // $("#back").attr('href', `#${vkey}`)
+    $("#back").attr('value', `#${vKey}`)
+
 
     const titleHolder = $(`<h5>${title}</h5>`);
     const metaDataHolder = $(`<p id="metaData">${metaData}</p>`);

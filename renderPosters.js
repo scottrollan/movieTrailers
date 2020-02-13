@@ -63,7 +63,7 @@ $("#poster-area").empty()
     const buttonRow = $("<div>")
     buttonRow.addClass("buttonRow")
 
-    const youtubeHref = $(`<a href='#${posters[i].trailerKey}>`)
+    const youtubeHref = $("<a href='#'>")
     const youtubeTrailer = $(`<img>`)
     youtubeTrailer.attr("src", "./assets/youtube.png")
     youtubeTrailer.addClass("youtube")
@@ -78,6 +78,7 @@ $("#poster-area").empty()
     youtubeTrailer.attr("actors", posters[i].actors)
     youtubeTrailer.attr("ratings", posters[i].ratings)
     youtubeHref.append(youtubeTrailer)
+
 
     const moreInfoHref = $("<a>");
     const moreInfo = $("<button>");
@@ -104,13 +105,14 @@ $("#poster-area").empty()
     goSeeHref.append(goSeeBtn);
 
     buttonRow.append(goSeeHref);
-    buttonRow.append(youtubeHref);
     buttonRow.append(moreInfoHref);
+    buttonRow.append(youtubeHref);
+
     if (posters[i].goSee === null) {
       goSeeHref.addClass("displayNone");
     }
     if (posters[i].trailerKey === null) {
-      youtubeTrailer.addClass("displayNone");
+      youtubeTrailer.addClass("displayNone");//
     } else {
       moreInfoHref.addClass("displayNone"); //either youtube trailer or more Info button will display
     }

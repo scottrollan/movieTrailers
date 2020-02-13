@@ -14,12 +14,15 @@ showTrailer = () => {
   $("#searchArea").hide();
 };
 
-showPoster = () => {
+showPoster = (href) => {
   $("#trailer").hide();
   $("#back").hide();
   $("iframe").attr("src", $("iframe").attr("src")); //stops video play
   $("#poster-area").show();
   $("#searchArea").show();
+  // window.location.hash = href
+  window.scrollTo(0, $(href).offset().top);
+  $("#back").removeAttr('value')
 };
 
 $(".dropdown-item").on("click", function() {
@@ -27,7 +30,9 @@ $(".dropdown-item").on("click", function() {
   selectFromDropdown(category);
 });
 $("#searchBtn").on("click", searchTitles);
-$("#back").on("click", showPoster);
+$("#back").on("click", function() {
+  showPoster($(this).attr("value"))
+});
 $("#closeModal").on("click", function() {
   $("#moreInfoModal").removeClass("displayYes");
 });
