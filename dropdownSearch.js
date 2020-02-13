@@ -8,13 +8,15 @@ selectFromDropdown = clickedOption => {
     method: "GET"
   }).then(function(response) {
     for (i = 0; i < response.results.length; i++) {
+      const unformattedDate = response.results[i].release_date.split('-')
+      const formattedDate = `${unformattedDate[1]}/${unformattedDate[2]}/${unformattedDate[0]}`
       popObject = {
         Title: response.results[i].title,
         tmdbID: response.results[i].id,
         Poster: `https://image.tmdb.org/t/p/w500${response.results[i].poster_path}`,
         posterBackup: null,
         backdropPath: `https://image.tmdb.org/t/p/w500${response.results[i].backdrop_path}`,
-        Year: `release date: ${response.results[i].release_date}`,
+        Year: `release date: ${formattedDate}`,
         runtime: "",
         rated: "",
         actors: "",

@@ -20,22 +20,24 @@ showPoster = (href) => {
   $("iframe").attr("src", $("iframe").attr("src")); //stops video play
   $("#poster-area").show();
   $("#searchArea").show();
-  // window.location.hash = href
   window.scrollTo(0, $(href).offset().top);
   $("#back").removeAttr('value')
 };
-
+//////////////////////////////////////////////////
 $(".dropdown-item").on("click", function() {
   const category = $(this).attr("action");
   selectFromDropdown(category);
 });
+
 $("#searchBtn").on("click", searchTitles);
 $("#back").on("click", function() {
   showPoster($(this).attr("value"))
 });
-$("#closeModal").on("click", function() {
+
+$(".close").on("click", function() {
   $("#moreInfoModal").removeClass("displayYes");
 });
+
 $(document).ready($("#trailer").hide());
 $(document).ready($("#back").hide());
 $(document).ready($("#searchInput").val(""));
