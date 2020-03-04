@@ -62,7 +62,6 @@ $("#poster-area").empty()
     const buttonRow = $("<div>")
     buttonRow.addClass("buttonRow")
 
-    // const youtubeHref = $("<a href='#'>")
     const youtubeTrailer = $(`<img>`)
     youtubeTrailer.attr("src", "./assets/youtube.png")
     youtubeTrailer.addClass("youtube")
@@ -76,7 +75,6 @@ $("#poster-area").empty()
     youtubeTrailer.attr("genres", posters[i].genres)
     youtubeTrailer.attr("actors", posters[i].actors)
     youtubeTrailer.attr("ratings", posters[i].ratings)
-    // youtubeHref.append(youtubeTrailer)
 
 
     const moreInfoHref = $("<a>");
@@ -105,7 +103,6 @@ $("#poster-area").empty()
 
     buttonRow.append(goSeeHref);
     buttonRow.append(moreInfoHref);
-    // buttonRow.append(youtubeHref);
     buttonRow.append(youtubeTrailer);
 
     if (posters[i].goSee === null) {

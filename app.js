@@ -20,6 +20,15 @@ showPoster = (href) => {
   $("iframe").attr("src", $("iframe").attr("src")); //stops video play
   $("#poster-area").show();
   $("#searchArea").show();
+  $("#back").removeAttr('value')
+};
+
+backToPosters = (href) => {
+  $("#trailer").hide();
+  $("#back").hide();
+  $("iframe").attr("src", $("iframe").attr("src")); //stops video play
+  $("#poster-area").show();
+  $("#searchArea").show();
   window.scrollTo(0, $(href).offset().top);
   $("#back").removeAttr('value')
 };
@@ -31,7 +40,7 @@ $(".dropdown-item").on("click", function() {
 
 $("#searchBtn").on("click", searchTitles);
 $("#back").on("click", function() {
-  showPoster($(this).attr("value"))
+  backToPosters($(this).attr("value"))
 });
 
 $(".close").on("click", function() {
