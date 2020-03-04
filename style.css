@@ -263,7 +263,10 @@ form {
   border: 0px;
 }
 .youtube {
-  height: 31px;
+  background-image: url('./assets/youtube.png');
+  height: 34.3px;
+  width: 48.4px;
+  border-radius: 8px;
   z-index: 999;
 }
 .youtube:hover {
