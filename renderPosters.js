@@ -14,7 +14,6 @@ $("#poster-area").empty()
     const image = $("<img>");
     image.addClass("poster");
     image.attr("alt", `${posters[i].Title}`);
-    image.addClass("poster");
     image.attr("src", posters[i].Poster);
     image.attr(
       "onerror",
@@ -119,7 +118,9 @@ $("#poster-area").empty()
 
     movieDetails.append(buttonRow);
     movieInsideBack.append(movieDetails);
+    
     movie.append(movieInsideBack);
+
     containerDiv.append(movie);
 
     $("#poster-area").append(containerDiv);
