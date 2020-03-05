@@ -9,10 +9,10 @@ searchTitles = e => {
 
 showTrailer = () => {
   $("#trailer").show();
-  window.scrollTo(0, 0);
   $("#back").show();
   $("#poster-area").hide();
   $("#searchArea").hide();
+  window.scrollTo(0, 0);
 };
 
 showPoster = (href) => {
