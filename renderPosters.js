@@ -124,7 +124,8 @@ $("#poster-area").empty()
 
     $("#poster-area").append(containerDiv);
   }
-  $(".container-movie").click(function() {
+  // $(".container-movie").click(function() {
+  $(".front").click(function() {
     $(".movie", this).toggleClass("movieTurn");
     $(".front", this).toggleClass("frontTurn");
   });
